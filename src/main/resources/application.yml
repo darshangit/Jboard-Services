@@ -1,0 +1,11 @@
+spring:
+       datasource:
+                  url: jdbc:postgresql:Jboard
+                  username: postgres
+                  password: dash
+       jpa:
+          generate-ddl: true
+          create: true
+
+server:
+    port: 7071
