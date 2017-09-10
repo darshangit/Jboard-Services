@@ -18,8 +18,9 @@ public class JboardController {
     JBoardService jBoardService;
 
     @PostMapping(value="/jboard/retro/save", consumes = "application/json")
-    public void saveRetro(@RequestBody RetroEntity retroEntity){
+    public boolean saveRetro(@RequestBody RetroEntity retroEntity){
         jBoardService.save(retroEntity);
+        return true;
     }
 
     @GetMapping("/jboard/retro/getHistory")
