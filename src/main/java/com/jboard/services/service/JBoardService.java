@@ -1,6 +1,8 @@
 package com.jboard.services.service;
 
+import com.jboard.services.dao.LeavesAndTrainingsDao;
 import com.jboard.services.dao.RetroDao;
+import com.jboard.services.entity.LeavesTrainingsEntity;
 import com.jboard.services.entity.RetroEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +18,22 @@ public class JBoardService {
     @Autowired
     private RetroDao retroDao;
 
-    public void save(RetroEntity retroEntity){
+    @Autowired
+    private LeavesAndTrainingsDao leavesAndTrainingsDao;
+
+    public void saveRetro(RetroEntity retroEntity){
         retroDao.save(retroEntity);
     }
 
     public List<RetroEntity> getAllRetros(){
         return retroDao.findTop5ByOrderBySprintNoDesc();
+    }
+
+    public void saveLeavesAndTrainings(LeavesTrainingsEntity leavesTrainingsEntity){
+        leavesAndTrainingsDao.save(leavesTrainingsEntity);
+    }
+
+    public List<LeavesTrainingsEntity> getLeavesAndTrainingRows(){
+        return leavesAndTrainingsDao.findAll();
     }
 }
