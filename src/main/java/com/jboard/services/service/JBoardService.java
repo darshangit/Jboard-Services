@@ -29,8 +29,9 @@ public class JBoardService {
         return retroDao.findTop5ByOrderBySprintNoDesc();
     }
 
-    public void saveLeavesAndTrainings(LeavesTrainingsEntity leavesTrainingsEntity){
+    public  List<LeavesTrainingsEntity> saveLeavesAndTrainings(LeavesTrainingsEntity leavesTrainingsEntity){
         leavesAndTrainingsDao.save(leavesTrainingsEntity);
+        return leavesAndTrainingsDao.findAll();
     }
 
     public List<LeavesTrainingsEntity> getLeavesAndTrainingRows(){

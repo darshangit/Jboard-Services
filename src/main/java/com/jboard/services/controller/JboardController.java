@@ -30,9 +30,8 @@ public class JboardController {
     }
 
     @PostMapping(value="/jboard/leaves/save", consumes = "application/json")
-    public boolean saveLeavesTrainings(@RequestBody LeavesTrainingsEntity leavesTrainingsEntity){
-        jBoardService.saveLeavesAndTrainings(leavesTrainingsEntity);
-        return true;
+    public List<LeavesTrainingsEntity> saveLeavesTrainings(@RequestBody LeavesTrainingsEntity leavesTrainingsEntity){
+        return jBoardService.saveLeavesAndTrainings(leavesTrainingsEntity);
     }
 
     @GetMapping("/jboard/leaves/getLeavesAndTrainings")
