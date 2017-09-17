@@ -38,4 +38,9 @@ public class JboardController {
     public List<LeavesTrainingsEntity> getLeavesAndTrainings(){
         return jBoardService.getLeavesAndTrainingRows();
     }
+
+    @GetMapping("/jboard/leaves/deleteLeaveAndTraining/{uuid}")
+    public List<LeavesTrainingsEntity> deleteLeaveAndTraining(@PathVariable Integer uuid){
+        return jBoardService.deleteLeaveAndTrainingEntity(uuid);
+    }
 }

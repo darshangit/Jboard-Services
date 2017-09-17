@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 @Table(name="LEAVES_TRAININGS")
 public class LeavesTrainingsEntity {
 
-    private Integer UUID;
+    private Integer ltUuid;
     private String name;
     private String type;
     private Date fromDate;
@@ -22,8 +22,8 @@ public class LeavesTrainingsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "UUID")
-    public Integer getUUID() {
-        return UUID;
+    public Integer getLtUuid() {
+        return ltUuid;
     }
 
     @Column(name = "USER_NAME")
@@ -56,8 +56,8 @@ public class LeavesTrainingsEntity {
         return createTimeStamp;
     }
 
-    public void setUUID(Integer UUID) {
-        this.UUID = UUID;
+    public void setLtUuid(Integer ltUuid) {
+        this.ltUuid = ltUuid;
     }
 
     public void setName(String name) {

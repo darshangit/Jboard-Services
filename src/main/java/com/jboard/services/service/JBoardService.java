@@ -30,6 +30,16 @@ public class JBoardService {
     }
 
     public  List<LeavesTrainingsEntity> saveLeavesAndTrainings(LeavesTrainingsEntity leavesTrainingsEntity){
+        if(leavesTrainingsEntity.getLtUuid() != null){
+            LeavesTrainingsEntity leavesTrainEnt = leavesAndTrainingsDao.findOne(leavesTrainingsEntity.getLtUuid());
+            leavesTrainEnt.setName(leavesTrainingsEntity.getName());
+            leavesTrainEnt.setType(leavesTrainingsEntity.getType());
+            leavesTrainEnt.setFromDate(leavesTrainingsEntity.getFromDate());
+            leavesTrainEnt.setToDate(leavesTrainingsEntity.getToDate());
+            leavesTrainEnt.setCreateTimeStamp(leavesTrainingsEntity.getCreateTimeStamp());
+            leavesTrainEnt.setTotalDays(leavesTrainingsEntity.getTotalDays());
+            leavesTrainingsEntity = leavesTrainEnt;
+        }
         leavesAndTrainingsDao.save(leavesTrainingsEntity);
         return leavesAndTrainingsDao.findAll();
     }
@@ -37,4 +47,11 @@ public class JBoardService {
     public List<LeavesTrainingsEntity> getLeavesAndTrainingRows(){
         return leavesAndTrainingsDao.findAll();
     }
+
+    public  List<LeavesTrainingsEntity> deleteLeaveAndTrainingEntity(Integer uuid){
+        leavesAndTrainingsDao.delete(uuid);
+        return leavesAndTrainingsDao.findAll();
+    }
+
+
 }
