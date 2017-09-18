@@ -1,7 +1,9 @@
 package com.jboard.services.service;
 
+import com.jboard.services.dao.HolidayDao;
 import com.jboard.services.dao.LeavesAndTrainingsDao;
 import com.jboard.services.dao.RetroDao;
+import com.jboard.services.entity.HolidaysEntity;
 import com.jboard.services.entity.LeavesTrainingsEntity;
 import com.jboard.services.entity.RetroEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class JBoardService {
 
     @Autowired
     private LeavesAndTrainingsDao leavesAndTrainingsDao;
+
+    @Autowired
+    private HolidayDao holidayDao;
 
     public void saveRetro(RetroEntity retroEntity){
         retroDao.save(retroEntity);
@@ -51,6 +56,10 @@ public class JBoardService {
     public  List<LeavesTrainingsEntity> deleteLeaveAndTrainingEntity(Integer uuid){
         leavesAndTrainingsDao.delete(uuid);
         return leavesAndTrainingsDao.findAll();
+    }
+
+    public List<HolidaysEntity> getHolidayList(){
+        return holidayDao.findAll();
     }
 
 

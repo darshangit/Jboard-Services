@@ -1,5 +1,6 @@
 package com.jboard.services.controller;
 
+import com.jboard.services.entity.HolidaysEntity;
 import com.jboard.services.entity.LeavesTrainingsEntity;
 import com.jboard.services.entity.RetroEntity;
 import com.jboard.services.service.JBoardService;
@@ -42,5 +43,10 @@ public class JboardController {
     @GetMapping("/jboard/leaves/deleteLeaveAndTraining/{uuid}")
     public List<LeavesTrainingsEntity> deleteLeaveAndTraining(@PathVariable Integer uuid){
         return jBoardService.deleteLeaveAndTrainingEntity(uuid);
+    }
+
+    @GetMapping("/jboard/holidays/getall")
+    public List<HolidaysEntity> getHolidays(){
+        return jBoardService.getHolidayList();
     }
 }
