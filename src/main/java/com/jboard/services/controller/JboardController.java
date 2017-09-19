@@ -2,8 +2,10 @@ package com.jboard.services.controller;
 
 import com.jboard.services.entity.HolidaysEntity;
 import com.jboard.services.entity.LeavesTrainingsEntity;
+import com.jboard.services.entity.MemberEntity;
 import com.jboard.services.entity.RetroEntity;
 import com.jboard.services.service.JBoardService;
+import com.jboard.services.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,9 @@ public class JboardController {
 
     @Autowired
     JBoardService jBoardService;
+
+    @Autowired
+    MemberService memberService;
 
     @PostMapping(value="/jboard/retro/save", consumes = "application/json")
     public boolean saveRetro(@RequestBody RetroEntity retroEntity){
@@ -49,4 +54,21 @@ public class JboardController {
     public List<HolidaysEntity> getHolidays(){
         return jBoardService.getHolidayList();
     }
+
+    @GetMapping("/jboard/member/add/{name}")
+    public List<MemberEntity> addMember(@PathVariable String name){
+        return memberService.addMember(name);
+    }
+
+    @GetMapping("/jboard/member/delete/{id}")
+    public List<MemberEntity> addMember(@PathVariable Integer id){
+        return memberService.deleteMember(id);
+    }
+
+    @GetMapping("/jboard/member/getall")
+    public List<MemberEntity> getAllMembers(){
+        return memberService.getAllMembers();
+    }
+
+
 }
