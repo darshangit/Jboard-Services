@@ -34,6 +34,11 @@ public class JBoardService {
         return retroDao.findTop5ByOrderBySprintNoDesc();
     }
 
+    public List<RetroEntity> deleteRetro(Integer sprintNo){
+        retroDao.delete(sprintNo);
+        return retroDao.findTop5ByOrderBySprintNoDesc();
+    }
+
     public  List<LeavesTrainingsEntity> saveLeavesAndTrainings(LeavesTrainingsEntity leavesTrainingsEntity){
         if(leavesTrainingsEntity.getLtUuid() != null){
             LeavesTrainingsEntity leavesTrainEnt = leavesAndTrainingsDao.findOne(leavesTrainingsEntity.getLtUuid());

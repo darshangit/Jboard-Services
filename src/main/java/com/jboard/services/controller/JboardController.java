@@ -35,6 +35,11 @@ public class JboardController {
         return jBoardService.getAllRetros();
     }
 
+    @GetMapping("/jboard/retro/delete/{sprintNo}")
+    public List<RetroEntity> deleteRetro(@PathVariable Integer sprintNo){
+        return jBoardService.deleteRetro(sprintNo);
+    }
+
     @PostMapping(value="/jboard/leaves/save", consumes = "application/json")
     public List<LeavesTrainingsEntity> saveLeavesTrainings(@RequestBody LeavesTrainingsEntity leavesTrainingsEntity){
         return jBoardService.saveLeavesAndTrainings(leavesTrainingsEntity);
