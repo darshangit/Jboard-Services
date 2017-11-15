@@ -7,6 +7,7 @@ public class LocationDetailsResponse {
 
     private String projectName;
     private String createDate;
+    private Long daysDifference;
 
     public String getProjectName() {
         return projectName;
@@ -22,5 +23,13 @@ public class LocationDetailsResponse {
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public Long getDaysDifference() {
+        return daysDifference;
+    }
+
+    public void setDaysDifference(Long daysDifference) {
+        this.daysDifference = daysDifference;
     }
 }

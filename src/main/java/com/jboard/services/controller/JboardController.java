@@ -1,7 +1,7 @@
 package com.jboard.services.controller;
 
 import com.jboard.services.entity.*;
-import com.jboard.services.response.LocationDetailsResponse;
+import com.jboard.services.response.LocationWrapperDetails;
 import com.jboard.services.service.JBoardService;
 import com.jboard.services.service.JarLocationService;
 import com.jboard.services.service.MemberService;
@@ -78,7 +78,7 @@ public class JboardController {
     }
 
     @GetMapping("/jboard/environment/getDetails")
-    public List<LocationDetailsResponse> getDetails(){
+    public LocationWrapperDetails getDetails(){
         return jarLocationService.getJarLocationDetails();
     }
 
