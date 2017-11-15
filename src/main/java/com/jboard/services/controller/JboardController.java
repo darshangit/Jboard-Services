@@ -1,10 +1,9 @@
 package com.jboard.services.controller;
 
-import com.jboard.services.entity.HolidaysEntity;
-import com.jboard.services.entity.LeavesTrainingsEntity;
-import com.jboard.services.entity.MemberEntity;
-import com.jboard.services.entity.RetroEntity;
+import com.jboard.services.entity.*;
+import com.jboard.services.response.LocationDetailsResponse;
 import com.jboard.services.service.JBoardService;
+import com.jboard.services.service.JarLocationService;
 import com.jboard.services.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +22,9 @@ public class JboardController {
 
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    JarLocationService jarLocationService;
 
     @PostMapping(value="/jboard/retro/save", consumes = "application/json")
     public boolean saveRetro(@RequestBody RetroEntity retroEntity){
@@ -75,5 +77,9 @@ public class JboardController {
         return memberService.getAllMembers();
     }
 
+    @GetMapping("/jboard/environment/getDetails")
+    public List<LocationDetailsResponse> getDetails(){
+        return jarLocationService.getJarLocationDetails();
+    }
 
 }
