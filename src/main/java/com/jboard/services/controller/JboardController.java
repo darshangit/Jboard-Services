@@ -5,6 +5,7 @@ import com.jboard.services.response.LocationWrapperDetails;
 import com.jboard.services.service.JBoardService;
 import com.jboard.services.service.JarLocationService;
 import com.jboard.services.service.MemberService;
+import com.jboard.services.service.SprintPlanningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,9 @@ public class JboardController {
 
     @Autowired
     JarLocationService jarLocationService;
+
+    @Autowired
+    SprintPlanningService sprintPlanningService;
 
     @PostMapping(value="/jboard/retro/save", consumes = "application/json")
     public boolean saveRetro(@RequestBody RetroEntity retroEntity){
@@ -82,4 +86,18 @@ public class JboardController {
         return jarLocationService.getJarLocationDetails();
     }
 
+    @PostMapping(value="/jboard/planning/save", consumes = "application/json")
+    public List<SprintPlanningEntity> savePlanning(@RequestBody SprintPlanningEntity sprintPlanningEntity){
+        return sprintPlanningService.savePlanning(sprintPlanningEntity);
+    }
+
+    @GetMapping("/jboard/planning/{sprintNo}")
+    public List<SprintPlanningEntity> getValuesBySprint(@PathVariable Integer sprintNo){
+        return sprintPlanningService.getAllPlanningForSprint(sprintNo);
+    }
+
+    @GetMapping("/jboard/planning/{uuid}/{sprintNo}")
+    public List<SprintPlanningEntity> deletePlanning(@PathVariable Integer uuid,@PathVariable Integer sprintNo){
+        return sprintPlanningService.deletePlanning(uuid,sprintNo);
+    }
 }
