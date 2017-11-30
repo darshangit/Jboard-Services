@@ -38,6 +38,8 @@ public class SprintDetailsService {
         }
         SprintDetailsEntity currentSprintEntity = sprintDetailsDao.findOne(sprintNo);
         currentSprintEntity.setSprintStatus(CURRENT_SPRINT_STATUS);
+        sprintDetailsDao.save(currentSprintEntity);
+
         return sprintDetailsDao.findAll();
     }
 
