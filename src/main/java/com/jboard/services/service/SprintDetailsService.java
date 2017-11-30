@@ -20,12 +20,12 @@ public class SprintDetailsService {
     private SprintDetailsDao sprintDetailsDao;
 
     public List<SprintDetailsEntity> getAllSprints() {
-        return  sprintDetailsDao.findAll();
+        return  sprintDetailsDao.findAllByOrderBySprintStatusAsc();
     }
 
     public List<SprintDetailsEntity> deleteSprint(Integer sprintNo){
         sprintDetailsDao.delete(sprintNo);
-        return sprintDetailsDao.findAll();
+        return sprintDetailsDao.findAllByOrderBySprintStatusAsc();
     }
 
     public List<SprintDetailsEntity> markAsCurrentSprint(Integer sprintNo){
@@ -40,7 +40,7 @@ public class SprintDetailsService {
         currentSprintEntity.setSprintStatus(CURRENT_SPRINT_STATUS);
         sprintDetailsDao.save(currentSprintEntity);
 
-        return sprintDetailsDao.findAll();
+        return sprintDetailsDao.findAllByOrderBySprintStatusAsc();
     }
 
     public List<SprintDetailsEntity> addSprint(Integer sprintNo){
@@ -49,6 +49,6 @@ public class SprintDetailsService {
         sprintDetailsEntity.setSprintNumber(sprintNo);
 
         sprintDetailsDao.save(sprintDetailsEntity);
-        return sprintDetailsDao.findAll();
+        return sprintDetailsDao.findAllByOrderBySprintStatusAsc();
     }
 }
