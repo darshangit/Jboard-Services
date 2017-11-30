@@ -106,17 +106,17 @@ public class JboardController {
         return sprintDetailsService.getAllSprints();
     }
 
-    @GetMapping("/jboard/sprintDetails/{sprintNo}")
+    @GetMapping("/jboard/sprintDetails/delete/{sprintNo}")
     public List<SprintDetailsEntity> deleteSprint(@PathVariable Integer sprintNo){
         return sprintDetailsService.deleteSprint(sprintNo);
     }
 
-    @GetMapping("/jboard/sprintDetails/{sprintNo}")
+    @GetMapping("/jboard/sprintDetails/current/{sprintNo}")
     public List<SprintDetailsEntity> markAsCurrentSprint(@PathVariable Integer sprintNo){
         return sprintDetailsService.markAsCurrentSprint(sprintNo);
     }
 
-    @GetMapping("/jboard/sprintDetails/{sprintNo}")
+    @GetMapping("/jboard/sprintDetails/add/{sprintNo}")
     public List<SprintDetailsEntity> addSprint(@PathVariable Integer sprintNo){
         return sprintDetailsService.addSprint(sprintNo);
     }
