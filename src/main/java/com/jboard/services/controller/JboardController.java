@@ -120,4 +120,9 @@ public class JboardController {
     public List<SprintDetailsEntity> addSprint(@PathVariable Integer sprintNo){
         return sprintDetailsService.addSprint(sprintNo);
     }
+
+    @GetMapping("/jboard/sprintDetails/getCurrentSprint")
+    public SprintDetailsEntity getCurrentSprint(){
+        return sprintDetailsService.getCurrentSprint();
+    }
 }

@@ -51,4 +51,9 @@ public class SprintDetailsService {
         sprintDetailsDao.save(sprintDetailsEntity);
         return sprintDetailsDao.findAllByOrderBySprintStatusAsc();
     }
+
+    public SprintDetailsEntity getCurrentSprint(){
+        SprintDetailsEntity sprintDetailsEntity =  sprintDetailsDao.findBySprintStatusEquals(CURRENT_SPRINT_STATUS);
+        return sprintDetailsEntity;
+    }
 }
