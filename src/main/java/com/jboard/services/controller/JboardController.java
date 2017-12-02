@@ -30,6 +30,9 @@ public class JboardController {
     @Autowired
     SprintDetailsService sprintDetailsService;
 
+    @Autowired
+    LoginService loginService;
+
     @PostMapping(value="/jboard/retro/save", consumes = "application/json")
     public boolean saveRetro(@RequestBody RetroEntity retroEntity){
         jBoardService.saveRetro(retroEntity);
@@ -124,5 +127,10 @@ public class JboardController {
     @GetMapping("/jboard/sprintDetails/getCurrentSprint")
     public SprintDetailsEntity getCurrentSprint(){
         return sprintDetailsService.getCurrentSprint();
+    }
+
+    @PostMapping(value="/jboard/login/authenticate", consumes = "application/json")
+    public boolean autheticateLogin(@RequestBody LoginEntity loginEntity){
+        return loginService.authenticateUser(loginEntity);
     }
 }
