@@ -1,9 +1,6 @@
 package com.jboard.services.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
@@ -13,6 +10,7 @@ import java.sql.Timestamp;
 @Table(name="RETRO")
 public class RetroEntity {
 
+    private Integer sprintUUID;
     private Integer sprintNo;
     private Timestamp startDate;
     private Timestamp endDate;
@@ -23,8 +21,16 @@ public class RetroEntity {
     private String lessComment;
     private String actionItemsComment;
     private Timestamp createTimeStamp;
+    private String loginName;
+
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="SPRINT_UUID")
+    public Integer getSprintUUID() {
+        return sprintUUID;
+    }
+
     @Column(name="SPRINT_NO")
     public Integer getSprintNo() {
         return sprintNo;
@@ -69,9 +75,15 @@ public class RetroEntity {
     public String getActionItemsComment() {
         return actionItemsComment;
     }
+
     @Column(name="CREATE_TIMESTAMP")
     public Timestamp getCreateTimeStamp() {
         return createTimeStamp;
+    }
+
+    @Column(name="LOGIN_USER")
+    public String getLoginName() {
+        return loginName;
     }
 
     public void setSprintNo(Integer sprintNo) {
@@ -112,5 +124,13 @@ public class RetroEntity {
 
     public void setCreateTimeStamp(Timestamp createTimeStamp) {
         this.createTimeStamp = createTimeStamp;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
+    }
+
+    public void setSprintUUID(Integer sprintUUID) {
+        this.sprintUUID = sprintUUID;
     }
 }

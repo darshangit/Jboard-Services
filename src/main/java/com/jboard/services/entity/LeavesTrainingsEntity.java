@@ -18,6 +18,7 @@ public class LeavesTrainingsEntity {
     private Date toDate;
     private Integer totalDays;
     private Timestamp createTimeStamp;
+    private String loginName;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -56,6 +57,11 @@ public class LeavesTrainingsEntity {
         return createTimeStamp;
     }
 
+    @Column(name="LOGIN_USER")
+    public String getLoginName() {
+        return loginName;
+    }
+
     public void setLtUuid(Integer ltUuid) {
         this.ltUuid = ltUuid;
     }
@@ -82,5 +88,9 @@ public class LeavesTrainingsEntity {
 
     public void setCreateTimeStamp(Timestamp createTimeStamp) {
         this.createTimeStamp = createTimeStamp;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 }

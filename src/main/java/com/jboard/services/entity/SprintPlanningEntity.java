@@ -19,6 +19,7 @@ public class SprintPlanningEntity {
     private String assignee;
     private String currentStatus;
     private Integer sprintNo;
+    private String loginName;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -67,6 +68,11 @@ public class SprintPlanningEntity {
         return sprintNo;
     }
 
+    @Column(name="LOGIN_USER")
+    public String getLoginName() {
+        return loginName;
+    }
+
     public void setPlanningUuid(Integer planningUuid) {
         this.planningUuid = planningUuid;
     }
@@ -101,5 +107,9 @@ public class SprintPlanningEntity {
 
     public void setSprintNo(Integer sprintNo) {
         this.sprintNo = sprintNo;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 }

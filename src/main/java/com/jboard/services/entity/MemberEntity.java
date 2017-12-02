@@ -11,6 +11,7 @@ public class MemberEntity {
 
     private Integer memberUuid;
     private String memberName;
+    private String loginName;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,11 +25,20 @@ public class MemberEntity {
         return memberName;
     }
 
+    @Column(name="LOGIN_USER")
+    public String getLoginName() {
+        return loginName;
+    }
+
     public void setMemberUuid(Integer memberUuid) {
         this.memberUuid = memberUuid;
     }
 
     public void setMemberName(String memberName) {
         this.memberName = memberName;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 }

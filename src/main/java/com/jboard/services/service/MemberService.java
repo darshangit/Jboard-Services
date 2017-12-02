@@ -16,21 +16,22 @@ public class MemberService {
     @Autowired
     private MemberDao memberDao;
 
-    public List<MemberEntity> addMember(String name){
+    public List<MemberEntity> addMember(String name, String user){
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setMemberName(name);
+        memberEntity.setLoginName(user);
         memberDao.save(memberEntity);
 
-        return memberDao.findAll();
+        return memberDao.findAllByLoginNameOrderByMemberNameAsc(user);
     }
 
-    public List<MemberEntity> deleteMember(Integer id) {
+    public List<MemberEntity> deleteMember(Integer id, String user) {
         memberDao.delete(id);
-        return  memberDao.findAll();
+        return  memberDao.findAllByLoginNameOrderByMemberNameAsc(user);
     }
 
-    public List<MemberEntity> getAllMembers() {
-        return  memberDao.findAll();
+    public List<MemberEntity> getAllMembers(String user) {
+        return  memberDao.findAllByLoginNameOrderByMemberNameAsc(user);
     }
 
 

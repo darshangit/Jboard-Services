@@ -28,18 +28,19 @@ public class SprintPlanningService {
             sprintPlanningFromDb.setItemDescription(sprintPlanningEntity.getItemDescription());
             sprintPlanningFromDb.setItemName(sprintPlanningEntity.getItemName());
             sprintPlanningFromDb.setSprintNo(sprintPlanningEntity.getSprintNo());
+            sprintPlanningFromDb.setLoginName(sprintPlanningEntity.getLoginName());
             sprintPlanningEntity = sprintPlanningFromDb;
         }
         sprintPlanningDao.save(sprintPlanningEntity);
-        return sprintPlanningDao.findAll();
+        return sprintPlanningDao.findAllByLoginNameEquals(sprintPlanningEntity.getLoginName());
     }
 
-    public List<SprintPlanningEntity> getAllPlanningForSprint(Integer sprintNo){
-        return sprintPlanningDao.findBySprintNo(sprintNo);
+    public List<SprintPlanningEntity> getAllPlanningForSprint(Integer sprintNo,String user){
+        return sprintPlanningDao.findBySprintNoAndLoginNameEquals(sprintNo, user);
     }
 
-    public List<SprintPlanningEntity> deletePlanning(Integer uuid,Integer sprintNo){
+    public List<SprintPlanningEntity> deletePlanning(Integer uuid,Integer sprintNo, String user){
         sprintPlanningDao.delete(uuid);
-        return sprintPlanningDao.findBySprintNo(sprintNo);
+        return sprintPlanningDao.findBySprintNoAndLoginNameEquals(sprintNo, user);
     }
 }

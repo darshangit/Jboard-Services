@@ -39,14 +39,14 @@ public class JboardController {
         return true;
     }
 
-    @GetMapping("/jboard/retro/getHistory")
-    public List<RetroEntity> getRetros(){
-        return jBoardService.getAllRetros();
+    @GetMapping("/jboard/retro/getHistory/{user}")
+    public List<RetroEntity> getRetros(@PathVariable String user){
+        return jBoardService.getAllRetros(user);
     }
 
-    @GetMapping("/jboard/retro/delete/{sprintNo}")
-    public List<RetroEntity> deleteRetro(@PathVariable Integer sprintNo){
-        return jBoardService.deleteRetro(sprintNo);
+    @GetMapping("/jboard/retro/delete/{sprintUUID}/{user}")
+    public List<RetroEntity> deleteRetro(@PathVariable Integer sprintUUID,@PathVariable String user){
+        return jBoardService.deleteRetro(sprintUUID,user);
     }
 
     @PostMapping(value="/jboard/leaves/save", consumes = "application/json")
@@ -54,14 +54,14 @@ public class JboardController {
         return jBoardService.saveLeavesAndTrainings(leavesTrainingsEntity);
     }
 
-    @GetMapping("/jboard/leaves/getLeavesAndTrainings")
-    public List<LeavesTrainingsEntity> getLeavesAndTrainings(){
-        return jBoardService.getLeavesAndTrainingRows();
+    @GetMapping("/jboard/leaves/getLeavesAndTrainings/{user}")
+    public List<LeavesTrainingsEntity> getLeavesAndTrainings(@PathVariable String user){
+        return jBoardService.getLeavesAndTrainingRows(user);
     }
 
-    @GetMapping("/jboard/leaves/deleteLeaveAndTraining/{uuid}")
-    public List<LeavesTrainingsEntity> deleteLeaveAndTraining(@PathVariable Integer uuid){
-        return jBoardService.deleteLeaveAndTrainingEntity(uuid);
+    @GetMapping("/jboard/leaves/deleteLeaveAndTraining/{uuid}/{user}")
+    public List<LeavesTrainingsEntity> deleteLeaveAndTraining(@PathVariable Integer uuid,@PathVariable String user){
+        return jBoardService.deleteLeaveAndTrainingEntity(uuid, user);
     }
 
     @GetMapping("/jboard/holidays/getall")
@@ -69,19 +69,19 @@ public class JboardController {
         return jBoardService.getHolidayList();
     }
 
-    @GetMapping("/jboard/member/add/{name}")
-    public List<MemberEntity> addMember(@PathVariable String name){
-        return memberService.addMember(name);
+    @GetMapping("/jboard/member/add/{name}/{user}")
+    public List<MemberEntity> addMember(@PathVariable String name,@PathVariable String user){
+        return memberService.addMember(name,user);
     }
 
-    @GetMapping("/jboard/member/delete/{id}")
-    public List<MemberEntity> addMember(@PathVariable Integer id){
-        return memberService.deleteMember(id);
+    @GetMapping("/jboard/member/delete/{id}/{user}")
+    public List<MemberEntity> addMember(@PathVariable Integer id,@PathVariable String user){
+        return memberService.deleteMember(id,user);
     }
 
-    @GetMapping("/jboard/member/getall")
-    public List<MemberEntity> getAllMembers(){
-        return memberService.getAllMembers();
+    @GetMapping("/jboard/member/getall/{user}")
+    public List<MemberEntity> getAllMembers(@PathVariable String user){
+        return memberService.getAllMembers(user);
     }
 
     @GetMapping("/jboard/environment/getDetails")
@@ -94,39 +94,39 @@ public class JboardController {
         return sprintPlanningService.savePlanning(sprintPlanningEntity);
     }
 
-    @GetMapping("/jboard/planning/{sprintNo}")
-    public List<SprintPlanningEntity> getValuesBySprint(@PathVariable Integer sprintNo){
-        return sprintPlanningService.getAllPlanningForSprint(sprintNo);
+    @GetMapping("/jboard/planning/{sprintNo}/{user}")
+    public List<SprintPlanningEntity> getValuesBySprint(@PathVariable Integer sprintNo,@PathVariable String user){
+        return sprintPlanningService.getAllPlanningForSprint(sprintNo,user);
     }
 
-    @GetMapping("/jboard/planning/{uuid}/{sprintNo}")
-    public List<SprintPlanningEntity> deletePlanning(@PathVariable Integer uuid,@PathVariable Integer sprintNo){
-        return sprintPlanningService.deletePlanning(uuid,sprintNo);
+    @GetMapping("/jboard/planning/{uuid}/{sprintNo}/{user}")
+    public List<SprintPlanningEntity> deletePlanning(@PathVariable Integer uuid,@PathVariable Integer sprintNo,@PathVariable String user){
+        return sprintPlanningService.deletePlanning(uuid,sprintNo,user);
     }
 
-    @GetMapping("/jboard/sprintDetails/getAll")
-    public List<SprintDetailsEntity> getAllSprint(){
-        return sprintDetailsService.getAllSprints();
+    @GetMapping("/jboard/sprintDetails/getAll/{user}")
+    public List<SprintDetailsEntity> getAllSprint(@PathVariable String user){
+        return sprintDetailsService.getAllSprints(user);
     }
 
-    @GetMapping("/jboard/sprintDetails/delete/{sprintNo}")
-    public List<SprintDetailsEntity> deleteSprint(@PathVariable Integer sprintNo){
-        return sprintDetailsService.deleteSprint(sprintNo);
+    @GetMapping("/jboard/sprintDetails/delete/{sprintNo}/{user}")
+    public List<SprintDetailsEntity> deleteSprint(@PathVariable Integer sprintNo,@PathVariable String user){
+        return sprintDetailsService.deleteSprint(sprintNo,user);
     }
 
-    @GetMapping("/jboard/sprintDetails/current/{sprintNo}")
-    public List<SprintDetailsEntity> markAsCurrentSprint(@PathVariable Integer sprintNo){
-        return sprintDetailsService.markAsCurrentSprint(sprintNo);
+    @GetMapping("/jboard/sprintDetails/current/{sprintNo}/{user}")
+    public List<SprintDetailsEntity> markAsCurrentSprint(@PathVariable Integer sprintNo,@PathVariable String user){
+        return sprintDetailsService.markAsCurrentSprint(sprintNo,user);
     }
 
-    @GetMapping("/jboard/sprintDetails/add/{sprintNo}")
-    public List<SprintDetailsEntity> addSprint(@PathVariable Integer sprintNo){
-        return sprintDetailsService.addSprint(sprintNo);
+    @GetMapping("/jboard/sprintDetails/add/{sprintNo}/{user}")
+    public List<SprintDetailsEntity> addSprint(@PathVariable Integer sprintNo,@PathVariable String user){
+        return sprintDetailsService.addSprint(sprintNo,user);
     }
 
-    @GetMapping("/jboard/sprintDetails/getCurrentSprint")
-    public SprintDetailsEntity getCurrentSprint(){
-        return sprintDetailsService.getCurrentSprint();
+    @GetMapping("/jboard/sprintDetails/getCurrentSprint/{user}")
+    public SprintDetailsEntity getCurrentSprint(@PathVariable String user){
+        return sprintDetailsService.getCurrentSprint(user);
     }
 
     @PostMapping(value="/jboard/login/authenticate", consumes = "application/json")

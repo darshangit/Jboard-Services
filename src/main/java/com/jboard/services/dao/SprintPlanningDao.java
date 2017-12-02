@@ -12,5 +12,6 @@ import java.util.List;
 @Repository
 public interface SprintPlanningDao extends JpaRepository<SprintPlanningEntity, Integer>{
 
-    List<SprintPlanningEntity> findBySprintNo(Integer sprintNo);
+    List<SprintPlanningEntity> findBySprintNoAndLoginNameEquals(Integer sprintNo,String user);
+    List<SprintPlanningEntity> findAllByLoginNameEquals(String user);
 }

@@ -19,41 +19,44 @@ public class SprintDetailsService {
     @Autowired
     private SprintDetailsDao sprintDetailsDao;
 
-    public List<SprintDetailsEntity> getAllSprints() {
-        return  sprintDetailsDao.findAllByOrderBySprintStatusAsc();
+    public List<SprintDetailsEntity> getAllSprints(String user) {
+        return  sprintDetailsDao.findAllByLoginNameOrderBySprintStatusAscSprintNumberDesc(user);
     }
 
-    public List<SprintDetailsEntity> deleteSprint(Integer sprintNo){
-        sprintDetailsDao.delete(sprintNo);
-        return sprintDetailsDao.findAllByOrderBySprintStatusAsc();
+    public List<SprintDetailsEntity> deleteSprint(Integer sprintNo, String user){
+        SprintDetailsEntity currentSprintEntity = sprintDetailsDao.findBySprintNumberEqualsAndLoginNameEquals(sprintNo,user);
+        sprintDetailsDao.delete(currentSprintEntity.getSprintUUID());
+
+        return sprintDetailsDao.findAllByLoginNameOrderBySprintStatusAscSprintNumberDesc(user);
     }
 
-    public List<SprintDetailsEntity> markAsCurrentSprint(Integer sprintNo){
-        Optional<SprintDetailsEntity> sprintDetailsEntity = Optional.ofNullable(sprintDetailsDao.findBySprintStatusEquals(CURRENT_SPRINT_STATUS));
+    public List<SprintDetailsEntity> markAsCurrentSprint(Integer sprintNo, String user){
+        Optional<SprintDetailsEntity> sprintDetailsEntity = Optional.ofNullable(sprintDetailsDao.findBySprintStatusEqualsAndLoginNameEquals(CURRENT_SPRINT_STATUS,user));
 
         if(sprintDetailsEntity.isPresent()){
             SprintDetailsEntity entity =  sprintDetailsEntity.get();
             entity.setSprintStatus(null);
             sprintDetailsDao.save(entity);
         }
-        SprintDetailsEntity currentSprintEntity = sprintDetailsDao.findOne(sprintNo);
+        SprintDetailsEntity currentSprintEntity = sprintDetailsDao.findBySprintNumberEqualsAndLoginNameEquals(sprintNo,user);
         currentSprintEntity.setSprintStatus(CURRENT_SPRINT_STATUS);
         sprintDetailsDao.save(currentSprintEntity);
 
-        return sprintDetailsDao.findAllByOrderBySprintStatusAsc();
+        return sprintDetailsDao.findAllByLoginNameOrderBySprintStatusAscSprintNumberDesc(user);
     }
 
-    public List<SprintDetailsEntity> addSprint(Integer sprintNo){
+    public List<SprintDetailsEntity> addSprint(Integer sprintNo,String user){
         SprintDetailsEntity sprintDetailsEntity = new SprintDetailsEntity();
         sprintDetailsEntity.setSprintStatus(null);
         sprintDetailsEntity.setSprintNumber(sprintNo);
+        sprintDetailsEntity.setLoginName(user);
 
         sprintDetailsDao.save(sprintDetailsEntity);
-        return sprintDetailsDao.findAllByOrderBySprintStatusAsc();
+        return sprintDetailsDao.findAllByLoginNameOrderBySprintStatusAscSprintNumberDesc(user);
     }
 
-    public SprintDetailsEntity getCurrentSprint(){
-        SprintDetailsEntity sprintDetailsEntity =  sprintDetailsDao.findBySprintStatusEquals(CURRENT_SPRINT_STATUS);
+    public SprintDetailsEntity getCurrentSprint(String user){
+        SprintDetailsEntity sprintDetailsEntity =  sprintDetailsDao.findBySprintStatusEqualsAndLoginNameEquals(CURRENT_SPRINT_STATUS,user);
         return sprintDetailsEntity;
     }
 }

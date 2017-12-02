@@ -30,13 +30,13 @@ public class JBoardService {
         retroDao.save(retroEntity);
     }
 
-    public List<RetroEntity> getAllRetros(){
-        return retroDao.findTop5ByOrderBySprintNoDesc();
+    public List<RetroEntity> getAllRetros(String user){
+        return retroDao.findTop5ByLoginNameEqualsOrderBySprintNoDesc(user);
     }
 
-    public List<RetroEntity> deleteRetro(Integer sprintNo){
-        retroDao.delete(sprintNo);
-        return retroDao.findTop5ByOrderBySprintNoDesc();
+    public List<RetroEntity> deleteRetro(Integer sprintUUID,String user){
+        retroDao.delete(sprintUUID);
+        return retroDao.findTop5ByLoginNameEqualsOrderBySprintNoDesc(user);
     }
 
     public  List<LeavesTrainingsEntity> saveLeavesAndTrainings(LeavesTrainingsEntity leavesTrainingsEntity){
@@ -48,19 +48,20 @@ public class JBoardService {
             leavesTrainEnt.setToDate(leavesTrainingsEntity.getToDate());
             leavesTrainEnt.setCreateTimeStamp(leavesTrainingsEntity.getCreateTimeStamp());
             leavesTrainEnt.setTotalDays(leavesTrainingsEntity.getTotalDays());
+            leavesTrainEnt.setLoginName(leavesTrainingsEntity.getLoginName());
             leavesTrainingsEntity = leavesTrainEnt;
         }
         leavesAndTrainingsDao.save(leavesTrainingsEntity);
-        return leavesAndTrainingsDao.findAll();
+        return leavesAndTrainingsDao.findAllByLoginNameEquals(leavesTrainingsEntity.getLoginName());
     }
 
-    public List<LeavesTrainingsEntity> getLeavesAndTrainingRows(){
-        return leavesAndTrainingsDao.findAll();
+    public List<LeavesTrainingsEntity> getLeavesAndTrainingRows(String user){
+        return leavesAndTrainingsDao.findAllByLoginNameEquals(user);
     }
 
-    public  List<LeavesTrainingsEntity> deleteLeaveAndTrainingEntity(Integer uuid){
+    public  List<LeavesTrainingsEntity> deleteLeaveAndTrainingEntity(Integer uuid,String user){
         leavesAndTrainingsDao.delete(uuid);
-        return leavesAndTrainingsDao.findAll();
+        return leavesAndTrainingsDao.findAllByLoginNameEquals(user);
     }
 
     public List<HolidaysEntity> getHolidayList(){

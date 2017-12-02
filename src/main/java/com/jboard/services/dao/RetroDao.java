@@ -12,5 +12,5 @@ import java.util.List;
 @Repository
 public interface RetroDao extends JpaRepository<RetroEntity, Integer> {
 
-    List<RetroEntity> findTop5ByOrderBySprintNoDesc();
+    List<RetroEntity> findTop5ByLoginNameEqualsOrderBySprintNoDesc(String user);
 }

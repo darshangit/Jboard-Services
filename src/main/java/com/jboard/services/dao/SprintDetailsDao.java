@@ -12,7 +12,9 @@ import java.util.List;
 @Repository
 public interface SprintDetailsDao extends JpaRepository<SprintDetailsEntity, Integer> {
 
-    SprintDetailsEntity findBySprintStatusEquals(String sprintStatus);
-    List<SprintDetailsEntity> findAllByOrderBySprintStatusAsc();
+    SprintDetailsEntity findBySprintStatusEqualsAndLoginNameEquals(String sprintStatus,String user);
+    List<SprintDetailsEntity> findAllByLoginNameOrderBySprintStatusAscSprintNumberDesc(String user);
+    SprintDetailsEntity findBySprintNumberEqualsAndLoginNameEquals(Integer sprintNo,String user);
+
 
 }
