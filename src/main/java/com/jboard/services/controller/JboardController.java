@@ -33,6 +33,9 @@ public class JboardController {
     @Autowired
     LoginService loginService;
 
+    @Autowired
+    AccessControlService accessControlService;
+
     @PostMapping(value="/jboard/retro/save", consumes = "application/json")
     public boolean saveRetro(@RequestBody RetroEntity retroEntity){
         jBoardService.saveRetro(retroEntity);
@@ -132,5 +135,10 @@ public class JboardController {
     @PostMapping(value="/jboard/login/authenticate", consumes = "application/json")
     public boolean autheticateLogin(@RequestBody LoginEntity loginEntity){
         return loginService.authenticateUser(loginEntity);
+    }
+
+    @GetMapping("/jboard/accesscontrol/{user}")
+    public List<String> getRouteList(@PathVariable String user){
+        return accessControlService.getAll(user);
     }
 }

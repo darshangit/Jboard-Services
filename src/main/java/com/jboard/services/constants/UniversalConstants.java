@@ -6,4 +6,6 @@ package com.jboard.services.constants;
 public class UniversalConstants {
 
     public static final String CURRENT_SPRINT_STATUS = "CURRENT";
+    public static final String ACTIVE = "ACTIVE";
+
 }

@@ -11,6 +11,8 @@ public class LoginEntity {
 
     private String userName;
     private String password;
+    private String fromEmail;
+    private String toEmail;
 
     @Id
     @Column(name="LOGIN_USER_NAME")
@@ -19,15 +21,34 @@ public class LoginEntity {
     }
 
     @Column(name="LOGIN_PASSWORD")
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getPassword() {
         return password;
+    }
+
+    @Column(name="FROM_EMAIL")
+    public String getFromEmail() {
+        return fromEmail;
+    }
+
+    @Column(name="TO_EMAIL")
+    public String getToEmail() {
+        return toEmail;
+    }
+
+    public void setFromEmail(String fromEmail) {
+        this.fromEmail = fromEmail;
+    }
+
+    public void setToEmail(String toEmail) {
+        this.toEmail = toEmail;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
 }
