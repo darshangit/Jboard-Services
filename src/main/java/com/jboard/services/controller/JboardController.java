@@ -36,6 +36,9 @@ public class JboardController {
     @Autowired
     AccessControlService accessControlService;
 
+    @Autowired
+    PairProgrammingService pairProgrammingService;
+
     @PostMapping(value="/jboard/retro/save", consumes = "application/json")
     public boolean saveRetro(@RequestBody RetroEntity retroEntity){
         jBoardService.saveRetro(retroEntity);
@@ -140,5 +143,20 @@ public class JboardController {
     @GetMapping("/jboard/accesscontrol/{user}")
     public List<String> getRouteList(@PathVariable String user){
         return accessControlService.getAll(user);
+    }
+
+    @PostMapping(value="/jboard/pairprogram", consumes = "application/json")
+    public List<PairProgrammingEntity> savePairProgrammers(@RequestBody List<PairProgrammingEntity> incomingNames){
+        return pairProgrammingService.save(incomingNames);
+    }
+
+    @GetMapping("/jboard/pairprogram/deleteAll")
+    public List<PairProgrammingEntity> reset(){
+        return pairProgrammingService.deleteAll();
+    }
+
+    @GetMapping("/jboard/pairprogram/getAll")
+    public List<PairProgrammingEntity> getAllPairProgrammers(){
+        return pairProgrammingService.getAllPairProgrammers();
     }
 }
