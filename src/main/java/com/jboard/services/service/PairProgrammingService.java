@@ -2,6 +2,8 @@ package com.jboard.services.service;
 
 import com.jboard.services.dao.PairProgramDao;
 import com.jboard.services.entity.PairProgrammingEntity;
+import org.hibernate.StaleStateException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +14,15 @@ import java.util.List;
 @Service
 public class PairProgrammingService {
 
+    @Autowired
     private PairProgramDao pairProgramDao;
 
     public List<PairProgrammingEntity> save(List<PairProgrammingEntity> incomingNames){
-        pairProgramDao.deleteAll();;
+        try {
+            pairProgramDao.deleteAll();
+        }catch (StaleStateException e){
+            System.out.println("No Results for Delete All, ignoring exception");
+        }
         pairProgramDao.save(incomingNames);
         return pairProgramDao.findAll();
     }
