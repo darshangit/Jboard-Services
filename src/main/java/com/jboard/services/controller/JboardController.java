@@ -39,6 +39,9 @@ public class JboardController {
     @Autowired
     PairProgrammingService pairProgrammingService;
 
+    @Autowired
+    ScrumAttendanceService scrumAttendanceService;
+
     @PostMapping(value="/jboard/retro/save", consumes = "application/json")
     public boolean saveRetro(@RequestBody RetroEntity retroEntity){
         jBoardService.saveRetro(retroEntity);
@@ -158,5 +161,15 @@ public class JboardController {
     @GetMapping("/jboard/pairprogram/getAll")
     public List<PairProgrammingEntity> getAllPairProgrammers(){
         return pairProgrammingService.getAllPairProgrammers();
+    }
+
+    @GetMapping("/jboard/scrumattendance/{monthAndYear}")
+    public List<ScrumEntity> getScrumAttendanceForTheMonth(@PathVariable String monthAndYear){
+        return scrumAttendanceService.getScrumAttendanceForTheMonth(monthAndYear);
+    }
+
+    @PostMapping(value = "/jboard/scrumattendance/save", consumes = "application/json")
+    public List<ScrumEntity> saveScrumAttendance(@RequestBody ScrumEntity scrumEntity){
+        return scrumAttendanceService.saveScrumAttendance(scrumEntity);
     }
 }
