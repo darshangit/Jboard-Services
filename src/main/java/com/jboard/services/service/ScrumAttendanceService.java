@@ -29,6 +29,7 @@ public class ScrumAttendanceService {
             ScrumEntity scrumEnt = dbScrumEntity.get();
             scrumEntity.setFt1Attendance(StringUtils.isEmpty(scrumEntity.getFt1Attendance())? scrumEnt.getFt1Attendance(): scrumEntity.getFt1Attendance());
             scrumEntity.setFt2Attendance(StringUtils.isEmpty(scrumEntity.getFt2Attendance())? scrumEnt.getFt2Attendance(): scrumEntity.getFt2Attendance());
+            scrumEntity.setAttendanceUUID(scrumEnt.getAttendanceUUID());
         }
         scrumAttendanceDao.save(scrumEntity);
 
